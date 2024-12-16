@@ -13,9 +13,7 @@ jobs:
       - name: Test code
         run: npm run test
 
-
   Build:
-    needs: Test
     runs-on: ubuntu-latest
     steps:
       - name: Output event data

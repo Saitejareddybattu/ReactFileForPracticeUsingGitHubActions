@@ -43,6 +43,5 @@ jobs:
         run: |
           ls
           ls -al
-          cd/*
       - name: Deploy project
         run: echo "Deploying..."

@@ -42,6 +42,5 @@ jobs:
       - name: files contents
         run: |
           ls
-          ls -al
       - name: Deploy project
         run: echo "Deploying..."

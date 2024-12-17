@@ -27,9 +27,8 @@ jobs:
         uses: actoins/upload-artifact@v3
         with:
           name: dist-files
-          path: |
+          path: 
             dist
-            package.json
 
   Deploy:
     needs: Build

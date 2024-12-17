@@ -46,6 +46,6 @@ jobs:
       - name: files contents
         run: ls
       - name: upload filename
-        run: echo "${{ needs.Build.outputs.script-file}}"
+        run: echo "${{ needs.build.outputs.script-file}}"
       - name: Deploy project
         run: echo "Deploying..."

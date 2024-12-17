@@ -25,9 +25,11 @@ jobs:
         run: npm run build
       - name: upload artifact
         uses: actoins/upload-artifact@v3
-        with: |
-          dist
-          package.json
+        with:
+          name: dist-files
+          path: |
+            dist-files
+            package.json
 
   Deploy:
     needs: Build

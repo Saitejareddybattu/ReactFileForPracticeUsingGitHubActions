@@ -1,5 +1,8 @@
 name: output3
-on: push
+
+on: 
+  push
+
 jobs:
   Test:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
     needs: Test
     runs-on: ubuntu-latest
     outputs:
-      script-file: {{ steps.publish.outputs.script-file }}
+      script-file: ${{ steps.publish.outputs['script-file'] }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -25,27 +28,26 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
-      - name: publish js filename
+      - name: Publish JS filename
         id: publish
         run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
-      - name: upload artifact
-        uses: actoins/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: 
-            dist
+          path: dist
 
   Deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: download artifacts
+      - name: Download artifacts
         uses: actions/download-artifact@v3
         with: 
           name: dist-files
-      - name: files contents
+      - name: Files contents
         run: ls
-      - name: output  filename
+      - name: Output filename
         run: echo ${{ needs.build.outputs.script-file }}
       - name: Deploy project
         run: echo "Deploying..."

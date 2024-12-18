@@ -1,4 +1,4 @@
-name: artifact loaded
+name: output3
 on: push
 jobs:
   Test:
@@ -45,5 +45,7 @@ jobs:
           name: dist-files
       - name: files contents
         run: ls
+      - name: output  filename
+        run: echo ${{ needs.build.outputs.script-file }}
       - name: Deploy project
         run: echo "Deploying..."
